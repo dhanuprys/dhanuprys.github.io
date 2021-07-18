@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Dhanu Purnayasa Profile</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                user-select: none;
+            }
+
+            html, body {
+                padding: 0;
+                margin: 0;
+                min-height: 100vh;
+                max-width: 100vw;
+                font-family: sans-serif;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                padding: 0;
+                margin: 0;
+            }
+
+            #login-screen {
+                position: fixed;
+                z-index: 99;
+                background: #8239F1;
+                min-height: 100vh;
+                min-width: 100vw;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: show-login-screen 0.5s ease forwards;
+            }
+
+            #login-screen .login-logo {
+                width: 4em;
+                height: 4em;
+                background: url('/logo.svg');
+                background-size: cover;
+                background-position: center;
+                z-index: 100;
+                animation: rotate-login-logo 2.4s ease infinite;
+            }
+
+            @keyframes show-login-screen {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes rotate-login-logo {
+                0% {
+                    transform: rotate(0deg) scale(1);
+                    opacity: 0.5;
+                }
+
+                20% {
+                    opacity: 1;
+                }
+
+                80% {
+                    transform: rotate(360deg) scale(1.2);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .navbar-container {
+                background: white;
+                box-shadow: 0 3px 2em 1px rgba(0, 0, 0, 0.1);
+                padding-top: 10px;
+                padding-bottom: 10px;
+                position: fixed;
+                width: 100%;
+            }
+
+            .navbar-theme-white {
+                animation: to-white 0.7s ease forwards;
+            }
+
+            .navbar-theme-purple {
+                animation: to-purple 0.7s ease forwards;
+            }
+
+            @keyframes to-purple {
+                0% {
+                    background:white;
+                }
+
+                100% {
+                    background: #8239F1;
+                    color: white;
+                }
+            }
+
+            @keyframes to-white {
+                0% {
+                    background: #8239F1;
+                    color: white;
+                }
+
+                100% {
+                    background: white;
+                    
+                }
+            }
+
+            .navbar-wrapper {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                margin-left: 1.4em;
+                margin-right: 1.4em;
+            }
+
+            .navbar-left {
+                flex: 60%;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar-center {
+                display: none;
+                align-items: center;
+            }
+
+            .navbar-right {
+                flex: 40%;
+                display: flex;
+                justify-content: right;
+                align-items: center;
+            }
+
+            .navbar-logo {
+                min-height: 40px;
+                min-width: 40px;
+                max-height: 40px;
+                max-width: 40px;
+                background: url('/logo-purple.svg');
+                background-size: cover !important;
+                background-clip: border-box !important;
+                margin-right: 1em;
+            }
+
+            .navbar-logo-white {
+                background: url('/logo.svg');
+            }
+
+            @media screen and (max-width: 512px) {
+                .navbar-center {
+                    display: flex;
+                }
+
+                .navbar-logo {
+                    max-width: 45px;
+                    max-height: 45px;
+                }
+
+                .navbar-left {
+                    display: none;
+                }
+
+                .navbar-right {
+                    display: none;
+                }
+            }
+
+            .navbar-links {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: inline-flex;
+            }
+
+            .navbar-item {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-right: 4px;
+                margin-left: 4px;
+            }
+
+            .navbar-item:hover {
+                cursor: pointer;
+            }
+
+            header .menu {
+                display: none;
+                position: fixed;
+                width: 100%;
+                animation: menu-animation 1s ease-out forwards;
+            }
+
+            @keyframes menu-animation {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                    transform: translateY(4em);
+                }
+            }
+
+            header .menu-wrapper {
+                margin: 2em;
+                padding: 0.7em;
+                border-radius: 10px;
+                background: rgba(241, 241, 241, 0.8);
+                filter: blur(10%);
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 0 10px 1.5px rgba(0, 0, 0, 0.25);
+                z-index: 99;
+            }
+
+            header .menu-wrapper .menu-flex {
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0.5em;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .menu-profile {
+                width: 70px;
+                height: 70px;
+                background: white;
+                border-radius: 50%;
+                margin-right: 0.5em;
+            }
+
+            .menu-links {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: block !important;
+                text-align: center;
+            }
+
+            .menu-links .link {
+                padding: 1em;
+                margin: 1px;
+            }
+
+            .menu-links .link:hover {
+                background: #8239F1;
+                transition: 0.5s;
+                border-radius: 10px;
+                color: white;
+                cursor: pointer;
+            }
+
+            .menu-social {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .menu-social .link {
+                padding: 0.3em;
+                margin: 0.2em;
+            }
+
+            @media screen and (min-width: 512px) {
+                header .menu {
+                    display: none;
+                }
+            }
+
+            .container {
+                padding: 2%;
+                padding-top: 6em;
+            }
+
+            main {
+                min-height: inherit;
+            }
+
+            #banner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: inherit;
+                background: grey;
+            }
+
+            #banner button {
+                border: 0;
+                padding-top: 1.5em;
+                padding-bottom: 1.5em;
+                padding-left: 3em;
+                padding-right: 3em;
+                border-radius: 10px;
+                background: #EEE135;
+                color: white;
+                font-size: 15px;
+            }
+
+            #technologies {
+                min-height: inherit;
+                background: lightblue;
+            }
+
+            #projects {
+                min-height: inherit;
+                background: lightcoral;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="login-screen">
+            <div class="login-logo"></div>
+        </div>
+        <header>
+            <div id="header-navbar" class="navbar-container">
+                <div class="navbar-wrapper">
+                    <div class="navbar-left">
+                        <div class="navbar-logo"></div>
+                        <ul class="navbar-links">
+                            <li class="navbar-item">Project</li>
+                            <li class="navbar-item">Contact</li>
+                        </ul>
+                    </div>
+                    <div class="navbar-center">
+                        <div id="navbar-logo-toggler" class="navbar-logo"></div>
+                    </div>
+                    <div class="navbar-right">
+                        right
+                    </div>
+                </div>
+            </div>
+            <div id="header-menu" class="menu">
+                <div class="menu-wrapper">
+                    <div class="menu-flex">
+                        <img class="menu-profile" src="logo-purple.svg" />
+                        <h3>Dhanu Purnayasa</h3>
+                    </div>
+                    <ul class="menu-flex menu-links">
+                        <li class="link">Project</li>
+                        <li class="link">Contact</li>
+                    </ul>
+                    <ul class="menu-flex menu-social">
+                        <li class="link">Github</li>
+                        <li class="link">Instagram</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section id="banner" data-sticky="true">
+                <button>Show more</button>
+            </section>
+            <section id="technologies">
+                <div class="container">
+                    <h2>Technologies</h2>
+            </section>
+            <section id="projects">
+                <div class="container">
+                    <h2>Projects</h2>
+                </div>
+            </section>
+        </main>
+        <script>
+            const loginScreen = document.getElementById('login-screen');
+            const menuHeader = document.getElementById('header-menu');
+            const navbarHeader = document.getElementById('header-navbar');
+            const navbarLogoToggler = document.getElementById('navbar-logo-toggler');
+            const mainSections = [
+                document.getElementById('banner'),
+                document.getElementById('technologies'),
+                document.getElementById('projects')
+            ];
+            let SCROLL_UPDATE_STATE = true;
+            let RESIZE_STATE = true;
+
+            window.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    loginScreen.style.display = 'none';
+                }, 2300);
+
+                console.log('%c 🔐Happy Hacking', 'color: yellow; font-size: 25px');
+                console.log('%c ✨ Code by dhanuprys', 'font-size: 20px;');
+            });
+
+            window.addEventListener('resize', () => {
+                if (RESIZE_STATE) {
+                    RESIZE_STATE = false;
+                    loginScreen.style.display = 'flex';
+
+                    setTimeout(() => {
+                        RESIZE_STATE = true;
+                        loginScreen.style.display = 'none';
+                    }, 2300);
+                }
+
+                if (window.innerWidth > 512) {
+                    menuHeader.style.display = 'none';
+                    navbarHeader.classList.remove('navbar-theme-purple');
+                    navbarHeader.classList.add('navbar-theme-white');
+                }
+            });
+
+            function smoothScroll() {
+                const checkArea = (areaList = []) => {
+                    if (areaList.length === 0) {
+                        return;
+                    }
+
+                    areaList = [ ...areaList ];
+
+                    // console.log({ y: this.scrollY, o: areaList[0].offsetTop, l: areaList});
+
+                    if ((this.scrollY > (areaList[0].offsetTop + 5) && this.scrollY < (areaList[0].offsetTop + 20)) ||
+                        (this.scrollY < (areaList[0].offsetTop - 5) && this.scrollY > (areaList[0].offsetTop - 150))) {
+                        const scrollTarget = areaList[0].offsetTop + (!areaList[0].dataset.sticky ? 0 : 0);
+                        
+                        if (SCROLL_UPDATE_STATE) {
+                            window.scrollTo({
+                                top: scrollTarget, 
+                                left: 0,
+                                behavior: 'smooth'
+                            });
+
+                            SCROLL_UPDATE_STATE = false;
+
+                            setTimeout(() => {
+                                SCROLL_UPDATE_STATE = true;
+                            }, 700);
+                        }
+
+                        return this.scrollY;
+                    }
+                    
+                    areaList.shift();
+                    checkArea(areaList);
+                };
+
+                checkArea(mainSections);
+            }
+
+            window.addEventListener('scroll', smoothScroll);
+
+            (function () {
+                const img = document.querySelectorAll('img');
+
+                for (const imageTag of img) {
+                    imageTag.addEventListener('dragstart', (e) => e.preventDefault());
+                }
+            })();
+
+            (function () {
+                document.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    
+                    if (window.innerWidth <= 512) {
+                        navbarLogoToggler.click();
+                    }
+                })
+            })();
+
+            (function () {
+                navbarLogoToggler.addEventListener('click', function () {
+                    const flipState = (inp) => inp === true ? 0 : 1;
+                    let openState = Boolean(Number(this.dataset.open || 1));
+
+                    if (openState) {
+                        // close 
+                        menuHeader.style.display = 'block';
+                        navbarHeader.classList.remove('navbar-theme-white');
+                        navbarHeader.classList.add('navbar-theme-purple');
+                        this.classList.add('navbar-logo-white');
+
+                    } else {
+                        menuHeader.style.display = 'none';
+                        navbarHeader.classList.remove('navbar-theme-purple');
+                        navbarHeader.classList.add('navbar-theme-white');
+                        this.classList.remove('navbar-logo-white');
+                    }
+
+                    this.dataset.open = flipState(openState);
+                });
+            })();
+        </script>
+    </body>
+</html>
