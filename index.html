@@ -384,6 +384,7 @@
                 document.getElementById('technologies'),
                 document.getElementById('projects')
             ];
+            const IS_MOBILE = /Android/i.test(navigator.userAgent);
             let SCROLL_UPDATE_STATE = true;
             let RESIZE_STATE = true;
 
@@ -399,11 +400,15 @@
             window.addEventListener('resize', () => {
                 if (RESIZE_STATE) {
                     RESIZE_STATE = false;
-                    loginScreen.style.display = 'flex';
+                    if (!IS_MOBILE) {
+                        loginScreen.style.display = 'flex';
+                    }
 
                     setTimeout(() => {
                         RESIZE_STATE = true;
-                        loginScreen.style.display = 'none';
+                        if (!IS_MOBILE) {
+                            loginScreen.style.display = 'none';
+                        }
                     }, 2300);
                 }
 
